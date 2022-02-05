@@ -61,12 +61,22 @@ public class SignUp extends AppCompatActivity {
                 startActivity(intent,options.toBundle());
             }
         });
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = fullName.getEditText().toString();
+                String uName = fullName.getEditText().toString();
+                String mail = fullName.getEditText().toString();
+                String pass = fullName.getEditText().toString();
+                String phone = fullName.getEditText().toString();
+
+                UserHelperClass userHelperClass = new UserHelperClass(name,uName,mail,phone,pass);
+
                 rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("Users");
-                reference.setValue("First database");
+                reference = rootNode.getReference("users");
+
+                reference.child("arman").setValue(userHelperClass);
             }
         });
     }
