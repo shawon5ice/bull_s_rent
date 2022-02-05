@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868403022840",
+    "project_id": "bull-s-rent-app",
+    "storage_bucket": "bull-s-rent-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868403022840:android:487ca2fb7af4cdd49ee40d",
+        "android_client_info": {
+          "package_name": "com.ssquare.bullsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868403022840-hu947n1uqqmdj1qifkvvhqcjrgb9eqsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeaGbaADpuJ0pLIVqvbPi7iHjwx7dOgI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868403022840-hu947n1uqqmdj1qifkvvhqcjrgb9eqsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
