@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle2"
+    android:orientation="vertical"
+    tools:context=".VerifyPhoneNumber">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle">
+
+        <ImageView
+            android:id="@+id/phone_verify_IV"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/bull_2" />
+
+        <TextView
+            android:id="@+id/phone_verify_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_verify_IV"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/bungee"
+            android:includeFontPadding="false"
+            android:text="VERIFY PHONE NO"
+            android:textColor="#000"
+            android:textSize="28sp"></TextView>
+
+        <TextView
+            android:id="@+id/phone_verify_Desc_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_verify_TV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/antic"
+            android:text="Enter verification code if not automatically authorized."
+            android:textSize="16sp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/verify_phone_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/phone_verify_Desc_TV"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="180dp"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/verify_phone_ETL"
+                android:layout_below="@+id/phone_verify_Desc_TV"
+                android:hint="OTP code">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/verify_phone_btn"
+                android:elevation="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="VERIFY"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                android:textColor="@color/black"
+                android:backgroundTint="#FFC400">
+            </Button>
+        </LinearLayout>
+        <ProgressBar
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/verify_phone_linearLayout"
+            android:layout_width="50dp"
+            android:id="@+id/verify_phone_progressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

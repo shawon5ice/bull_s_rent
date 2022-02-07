@@ -41,8 +41,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/userName"
             android:hint="Username"
+            android:id="@+id/userName"
+            app:errorIconTint="@android:color/transparent"
             android:transitionName="username_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -55,14 +56,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
             android:hint="Password"
+            android:id="@+id/password"
+            app:errorIconTint="@android:color/transparent"
             android:transitionName="password_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             app:passwordToggleEnabled="true"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
+
                 android:layout_width="match_parent"
                 android:maxLines="1"
                 android:inputType="textPassword"
@@ -81,15 +84,15 @@
             android:fontFamily="@font/antic"
             >
         </Button>
+
         <Button
-            android:transitionName="button_tran"
+            android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:id="@+id/login_btn"
             android:backgroundTint="@android:color/black"
+            android:onClick="loginUser"
             android:text="GO"
-            >
-        </Button>
+            android:transitionName="button_tran"></Button>
         <Button
             android:id="@+id/gotoSinUpButton"
             android:layout_width="wrap_content"

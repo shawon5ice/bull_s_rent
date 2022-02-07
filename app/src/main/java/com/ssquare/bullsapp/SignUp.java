@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ssquare.bullsapp.models.UserModelClass;
 
 public class SignUp extends AppCompatActivity {
 
@@ -23,12 +26,14 @@ public class SignUp extends AppCompatActivity {
     private TextView logo_name,logo_slogan;
     private Button signUpButton,gotoSignInButton;
 
+    private FirebaseAuth mAuth;
+    private boolean regClicked = false;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
         image = findViewById(R.id.signUpLogoImage);
@@ -41,6 +46,10 @@ public class SignUp extends AppCompatActivity {
         phoneNo = findViewById(R.id.signUpPhoneNo);
         signUpButton = findViewById(R.id.signUpButton);
         gotoSignInButton = findViewById(R.id.gotoSignInButton);
+
+        mAuth = FirebaseAuth.getInstance();
+
+
 
         gotoSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,22 +71,210 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        fullName.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                String name = fullName.getEditText().toString();
-                String uName = fullName.getEditText().toString();
-                String mail = fullName.getEditText().toString();
-                String pass = fullName.getEditText().toString();
-                String phone = fullName.getEditText().toString();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                UserHelperClass userHelperClass = new UserHelperClass(name,uName,mail,phone,pass);
+            }
 
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("users");
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (regClicked){
+                    validateName();
+                }
+            }
 
-                reference.child("arman").setValue(userHelperClass);
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
+        email.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (regClicked){
+                    validateEmail();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        userName.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (regClicked){
+                    validateUsername();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        password.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (regClicked){
+                    validatePassword();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        phoneNo.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (regClicked){
+                    validatePhoneNo();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
+    private Boolean validateName() {
+        String val = fullName.getEditText().getText().toString();
+        if (val.isEmpty()) {
+            fullName.setError("Field cannot be empty");
+            return false;
+        } else {
+            fullName.setError(null);
+            fullName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private Boolean validateUsername() {
+        String val = userName.getEditText().getText().toString();
+        String noWhiteSpace = "^\\\\s*$";
+
+        if (val.isEmpty()) {
+            userName.setError("Field cannot be empty");
+            return false;
+        } else if (val.length() >= 15) {
+            userName.setError("Username too long");
+            return false;
+        } else if (val.contains(" ")) {
+            userName.setError("White Spaces are not allowed");
+            return false;
+        } else {
+            userName.setError(null);
+            userName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private Boolean validateEmail() {
+        String val = email.getEditText().getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if (val.isEmpty()) {
+            email.setError("Field cannot be empty");
+            return false;
+        } else if (!val.matches(emailPattern)) {
+            email.setError("Invalid email address");
+            return false;
+        } else {
+            email.setError(null);
+            email.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private Boolean validatePhoneNo() {
+        String val = phoneNo.getEditText().getText().toString();
+
+        if (val.isEmpty()) {
+            phoneNo.setError("Field cannot be empty");
+            return false;
+        } else {
+            phoneNo.setError(null);
+            phoneNo.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private Boolean validatePassword() {
+        String val = password.getEditText().getText().toString();
+        String passwordVal = "^" +
+                //"(?=.*[0-9])" +         //at least 1 digit
+                //"(?=.*[a-z])" +         //at least 1 lower case letter
+                //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                "(?=.*[a-zA-Z])" +      //any letter
+                "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                "(?=\\S+$)" +           //no white spaces
+                ".{4,}" +               //at least 4 characters
+                "$";
+
+        if (val.isEmpty()) {
+            password.setError("Field cannot be empty");
+            return false;
+        } else if (!val.matches(passwordVal)) {
+            password.setError("Password is too weak");
+            password.setErrorEnabled(false);
+            return false;
+        } else {
+            password.setError(null);
+            password.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+
+    public void regUser(View view){
+
+        regClicked = true;
+        if(!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateUsername()){
+            return;
+        }
+        String name = fullName.getEditText().getText().toString();
+        String uName = userName.getEditText().getText().toString();
+        String mail = email.getEditText().getText().toString();
+        String pass = password.getEditText().getText().toString();
+        String phone = phoneNo.getEditText().getText().toString();
+
+        Intent intent = new Intent(getApplicationContext(),VerifyPhoneNumber.class);
+        intent.putExtra("phoneNo",phone);
+
+        startActivity(intent);
+
+//        UserModelClass userModelClass = new UserModelClass(name,uName,mail,phone,pass);
+//
+//        rootNode = FirebaseDatabase.getInstance("https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app/");
+//        reference = rootNode.getReference("users");
+//
+//        reference.child(uName).setValue(userModelClass);
+    }
+
+
 }

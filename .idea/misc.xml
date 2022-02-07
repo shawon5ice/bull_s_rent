@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rectange.xml" value="0.25462962962962965" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rectangle2.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_dash_board.xml" value="0.25" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.264" />
       </map>
     </option>
   </component>
