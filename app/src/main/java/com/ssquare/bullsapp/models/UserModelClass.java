@@ -4,25 +4,75 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class UserModelClass implements Parcelable {
-    String name,userName,email,phoneNo,password;
+    String uid,name,uName,mail,phone,pass;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 
     public UserModelClass() {
     }
 
-    public UserModelClass(String name, String userName, String email, String phoneNo, String password) {
+    public UserModelClass(String uid, String name, String uName, String mail, String phone, String pass) {
+        this.uid = uid;
         this.name = name;
-        this.userName = userName;
-        this.email = email;
-        this.phoneNo = phoneNo;
-        this.password = password;
+        this.uName = uName;
+        this.mail = mail;
+        this.phone = phone;
+        this.pass = pass;
     }
 
     protected UserModelClass(Parcel in) {
+        uid = in.readString();
         name = in.readString();
-        userName = in.readString();
-        email = in.readString();
-        phoneNo = in.readString();
-        password = in.readString();
+        uName = in.readString();
+        mail = in.readString();
+        phone = in.readString();
+        pass = in.readString();
     }
 
     public static final Creator<UserModelClass> CREATOR = new Creator<UserModelClass>() {
@@ -37,46 +87,6 @@ public class UserModelClass implements Parcelable {
         }
     };
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -84,10 +94,11 @@ public class UserModelClass implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(uid);
         parcel.writeString(name);
-        parcel.writeString(userName);
-        parcel.writeString(email);
-        parcel.writeString(phoneNo);
-        parcel.writeString(password);
+        parcel.writeString(uName);
+        parcel.writeString(mail);
+        parcel.writeString(phone);
+        parcel.writeString(pass);
     }
 }

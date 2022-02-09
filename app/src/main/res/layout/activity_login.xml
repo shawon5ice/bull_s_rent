@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:layout_marginHorizontal="20dp"
     android:layout_marginBottom="20dp"
+    android:id="@+id/loginScreenId"
     >
     <ImageView
         android:id="@+id/logo_image"
@@ -41,10 +42,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="Username"
-            android:id="@+id/userName"
+            android:hint="Email"
+            android:id="@+id/signInEmail"
             app:errorIconTint="@android:color/transparent"
-            android:transitionName="username_tran"
+            android:transitionName="email_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"

@@ -1,5 +1,6 @@
 package com.ssquare.bullsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -12,8 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,6 +41,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
+        getSupportActionBar().hide();
 
         image = findViewById(R.id.signUpLogoImage);
         logo_name = findViewById(R.id.signup_logo_name);
@@ -257,23 +264,41 @@ public class SignUp extends AppCompatActivity {
         if(!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateUsername()){
             return;
         }
-        String name = fullName.getEditText().getText().toString();
-        String uName = userName.getEditText().getText().toString();
-        String mail = email.getEditText().getText().toString();
-        String pass = password.getEditText().getText().toString();
-        String phone = phoneNo.getEditText().getText().toString();
+        String name = fullName.getEditText().getText().toString().trim();
+        String uName = userName.getEditText().getText().toString().trim();
+        String mail = email.getEditText().getText().toString().trim();
+        String pass = password.getEditText().getText().toString().trim();
+        String phone = phoneNo.getEditText().getText().toString().trim();
 
-        Intent intent = new Intent(getApplicationContext(),VerifyPhoneNumber.class);
-        intent.putExtra("phoneNo",phone);
 
-        startActivity(intent);
+//        //phone Number Authentication page.
+//        Intent intent = new Intent(getApplicationContext(),VerifyPhoneNumber.class);
+//        intent.putExtra("phoneNo",phone);
+//        startActivity(intent);
 
-//        UserModelClass userModelClass = new UserModelClass(name,uName,mail,phone,pass);
-//
-//        rootNode = FirebaseDatabase.getInstance("https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app/");
-//        reference = rootNode.getReference("users");
-//
-//        reference.child(uName).setValue(userModelClass);
+        System.out.println("Hello From RegUser");
+        mAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    String uid = mAuth.getUid();
+                    UserModelClass userModelClass = new UserModelClass(uid,name,uName,mail,phone,pass);
+                    rootNode = FirebaseDatabase.getInstance("https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                    reference = rootNode.getReference("users");
+                    reference.child(uid).setValue(userModelClass);
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Authentication failed",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
