@@ -83,7 +83,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile,container,false);
 
         name = view.findViewById(R.id.profile_name_ET);
-        progressBar = view.findViewById(R.id.profileLoadingProgressBar);
+//        progressBar = view.findViewById(R.id.profileLoadingProgressBar);
         email = view.findViewById(R.id.profile_email_ET);
         phoneNo = view.findViewById(R.id.profile_phoneNo_ET);
         password = view.findViewById(R.id.profile_password_ET);
@@ -98,9 +98,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onStart() {
         //data is not updating according to db
-        super.onStart();
         try {
-            progressBar.setVisibility(View.VISIBLE);
+            Log.i("DB","trying");
+//            progressBar.setVisibility(View.VISIBLE);
             db.collection("users")
                     .document(mAuth.getCurrentUser().getUid()).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -109,6 +109,8 @@ public class ProfileFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot snapshot = task.getResult();
                                 if (snapshot.exists()) {
+                                    Log.i("DB","in snapshot");
+                                    Log.i("DB",snapshot.getString("email"));
                                     Log.i("test", snapshot.toString());
                                     String n = snapshot.getString("name");
                                     System.out.println(n);
@@ -132,7 +134,8 @@ public class ProfileFragment extends Fragment {
                         }
                     });
         } finally {
-            progressBar.setVisibility(View.INVISIBLE);
+//            progressBar.setVisibility(View.INVISIBLE);
         }
+        super.onStart();
     }
 }
