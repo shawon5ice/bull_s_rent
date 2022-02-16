@@ -1,28 +1,24 @@
 package com.ssquare.bullsapp.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ssquare.bullsapp.HomePage;
+import com.ssquare.bullsapp.LandingPage;
 import com.ssquare.bullsapp.R;
 import com.ssquare.bullsapp.models.NoteModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private List<NoteModel> todoList;
-    private HomePage activity;
+    private LandingPage activity;
 
-    public NoteAdapter(HomePage activity){
+    public NoteAdapter(LandingPage activity){
         this.activity = activity;
     }
 

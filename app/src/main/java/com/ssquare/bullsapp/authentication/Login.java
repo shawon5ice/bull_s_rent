@@ -1,4 +1,4 @@
-package com.ssquare.bullsapp;
+package com.ssquare.bullsapp.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Pair;
@@ -15,26 +16,35 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ssquare.bullsapp.LandingPage;
+import com.ssquare.bullsapp.R;
 
 public class Login extends AppCompatActivity {
+
 
     private boolean logButttonClicked = false;
     public static final String USER_KEY = "userDetails";
 
-    private Button callSignUp_btn,login_btn,forget_btn;
+    private Button callSignUp_btn,login_btn,forget_btn,verify_btn;
     private ImageView image;
     private TextView logoText,sloganText;
     private TextInputLayout email,password;
+    private String uid;
+    private ProgressBar progressBar;
+    Handler handler = new Handler();
+    Runnable refresh;
+    int reloadValue = 0;
 
     private FirebaseAuth mAuth;
 
@@ -44,7 +54,7 @@ public class Login extends AppCompatActivity {
         Window window = Login.this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(ContextCompat.getColor(Login.this, android.R.color.darker_gray ));
+        window.setStatusBarColor(ContextCompat.getColor(Login.this, android.R.color.darker_gray));
 
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
@@ -57,27 +67,47 @@ public class Login extends AppCompatActivity {
         sloganText = findViewById(R.id.logo_slogan);
         email = findViewById(R.id.signInEmail);
         password = findViewById(R.id.password);
+//        verify_btn = findViewById(R.id.retry_btn);
+        progressBar = findViewById(R.id.LoginProgressBarId);
 
         mAuth = FirebaseAuth.getInstance();
-
+        uid = getIntent().getStringExtra("uid");
 
         callSignUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SignUp.class);
+                System.out.println("sign up called");
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
                 Pair pairs[] = new Pair[7];
-                pairs[0] = new Pair<View,String>(image,"logo_image");
-                pairs[1] = new Pair<View,String>(logoText,"logo_name");
-                pairs[2] = new Pair<View,String>(sloganText,"logo_slogan");
-                pairs[3] = new Pair<View,String>(email,"email_tran");
-                pairs[4] = new Pair<View,String>(password,"password_tran");
-                pairs[5] = new Pair<View,String>(login_btn,"login_btn");
-                pairs[6] = new Pair<View,String>(callSignUp_btn,"gotoSinUpButton");
+                pairs[0] = new Pair<View, String>(image, "logo_image");
+                pairs[1] = new Pair<View, String>(logoText, "logo_name");
+                pairs[2] = new Pair<View, String>(sloganText, "logo_slogan");
+                pairs[3] = new Pair<View, String>(email, "email_tran");
+                pairs[4] = new Pair<View, String>(password, "password_tran");
+                pairs[5] = new Pair<View, String>(login_btn, "login_btn");
+                pairs[6] = new Pair<View, String>(callSignUp_btn, "gotoSinUpButton");
 
-                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(Login.this,pairs);
-                startActivity(intent,activityOptions.toBundle());
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
+                startActivity(intent, activityOptions.toBundle());
             }
         });
+
+//            verify_btn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void unused) {
+//                            Snackbar.make(verify_btn, "Please check your mail to \nverify this account", Snackbar.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Snackbar.make(verify_btn, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//            });
 
         email.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +117,7 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(logButttonClicked){
+                if (logButttonClicked) {
                     validateUsername();
                 }
             }
@@ -106,7 +136,7 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(logButttonClicked){
+                if (logButttonClicked) {
                     validatePassword();
                 }
             }
@@ -119,12 +149,13 @@ public class Login extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user!=null){
-            Intent intent = new Intent(getApplicationContext(),HomePage.class);
+        if(user!=null && user.getEmail()!=null){
+            Intent intent = new Intent(getApplicationContext(), LandingPage.class);
             startActivity(intent);
             finish();
         }
@@ -157,6 +188,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginUser(View view){
+        progressBar.setVisibility(View.VISIBLE);
+        login_btn.setEnabled(false);
+        login_btn.setBackgroundColor(getColor(R.color.little_white));
         logButttonClicked = true;
         if(!validatePassword() | !validateUsername()){
             return;
@@ -165,51 +199,13 @@ public class Login extends AppCompatActivity {
         final String userEnteredEmail = email.getEditText().getText().toString().trim();
         final String userEnteredPassword = password.getEditText().getText().toString().trim();
 
-//        DatabaseReference reference = FirebaseDatabase.getInstance("https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app/")
-//                .getReference("users");
-//        Query checkUser = reference.orderByChild("userName").equalTo(userEnteredUserName);
-//
-//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    userName.setErrorEnabled(false);
-//                    String passwordFromDB = snapshot.child(userEnteredUserName).child("password").getValue(String.class).toString().trim();
-//
-//                    if(passwordFromDB.equals(userEnteredPassword)){
-//                        password.setErrorEnabled(false);
-//                        String nameFromDB = snapshot.child(userEnteredUserName).child("name").getValue(String.class);
-//                        String emailFromDB = snapshot.child(userEnteredUserName).child("email").getValue(String.class);
-//                        String phoneNoFromDB = snapshot.child(userEnteredUserName).child("phoneNo").getValue(String.class);
-//                        String userNameFromDB = snapshot.child(userEnteredUserName).child("userName").getValue(String.class);
-//
-//                        Intent intent = new Intent(getApplicationContext(),UserProfile.class);
-//                        UserModelClass userModelClass = new UserModelClass(nameFromDB,userNameFromDB,emailFromDB,phoneNoFromDB,passwordFromDB);
-//                        intent.putExtra("userDetails", userModelClass);
-//
-//                        startActivity(intent);
-//                    }else{
-//                        password.setError("Wrong Password");
-//                        password.requestFocus();
-//                    }
-//                }else{
-//                    userName.setError("No such user exits");
-//                    userName.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
         mAuth.signInWithEmailAndPassword(userEnteredEmail,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),HomePage.class));
+                if(task.isSuccessful()) {
+                    Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+                    startActivity(intent);
                     finish();
                 }
             }
@@ -217,6 +213,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
+                Snackbar.make(login_btn,e.getLocalizedMessage(),Snackbar.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+                login_btn.setEnabled(true);
+                login_btn.setBackgroundColor(getColor(R.color.black));
             }
         });
 

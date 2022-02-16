@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile"
-    android:orientation="vertical">
+    android:background="#2FFFC107"
+    tools:context=".ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,49 +15,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <LinearLayout
-                android:orientation="horizontal"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
+                android:layout_height="250dp"
+                android:background="@color/teal_200"
+                android:padding="20dp"
+                >
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bull_rent"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/full_name_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/profile_image"
+                    android:fontFamily="@font/bungee"
+                    android:includeFontPadding="false"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/user_name_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:includeFontPadding="false"
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@+id/profile_image"
+                    android:layout_below="@+id/full_name_TV"
+                    android:layout_centerVertical="true"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/profileLoadingProgressBar"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:background="@color/teal_200"
-                    android:padding="20dp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/bull_rent" />
-
-                    <TextView
-                        android:id="@+id/full_name_TV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/profile_image"
-                        android:fontFamily="@font/bungee"
-                        android:includeFontPadding="false"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                    <TextView
-                        android:id="@+id/user_name_TV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:includeFontPadding="false"
-                        android:textSize="14sp"
-                        android:layout_toRightOf="@+id/profile_image"
-                        android:layout_below="@+id/full_name_TV"
-                        android:layout_centerVertical="true"
-                        />
-
-                </RelativeLayout>
-
-            </LinearLayout>
+                    android:visibility="invisible"
+                    android:elevation="3dp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_height="wrap_content"></ProgressBar>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,6 +108,7 @@
                             android:textColor="#000"
                             >
                         </TextView>
+
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle"
+    android:padding="20dp"
+    tools:context=".authentication.VerifyEmail">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:text="Please check your email to \nverify this account"
+            android:fontFamily="@font/bungee"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/verificationProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorColor="@color/black">
+        </com.google.android.material.progressindicator.LinearProgressIndicator>
+        <TextView
+            android:id="@+id/waitTimerTV"
+            android:layout_marginTop="100dp"
+            android:layout_below="@+id/verificationProgressBar"
+            android:textAlignment="center"
+            android:text="Wait 40 seconds to resend verification email again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <Button
+            android:id="@+id/resendVerificationButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/waitTimerTV"
+            android:text="Resend Verification Code"></Button>
+    </RelativeLayout>
+
+
+</LinearLayout>

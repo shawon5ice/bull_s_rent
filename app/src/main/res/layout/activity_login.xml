@@ -4,18 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    tools:context=".authentication.Login"
     android:orientation="vertical"
     android:layout_marginHorizontal="20dp"
     android:layout_marginBottom="20dp"
     android:id="@+id/loginScreenId"
     >
-    <ImageView
-        android:id="@+id/logo_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:transitionName="logo_image"
-        android:src="@drawable/bull_rent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:transitionName="logo_image"
+            android:src="@drawable/bull_rent"/>
+        <ProgressBar
+            android:visibility="invisible"
+            android:layout_gravity="end|center"
+            android:id="@+id/LoginProgressBarId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ProgressBar>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/logo_name"
@@ -93,7 +104,9 @@
             android:backgroundTint="@android:color/black"
             android:onClick="loginUser"
             android:text="GO"
-            android:transitionName="button_tran"></Button>
+            android:transitionName="button_tran">
+
+        </Button>
         <Button
             android:id="@+id/gotoSinUpButton"
             android:layout_width="wrap_content"
@@ -108,6 +121,17 @@
             android:fontFamily="@font/antic"
             >
         </Button>
+<!--        <Button-->
+<!--            android:id="@+id/retry_btn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="65dp"-->
+<!--            android:backgroundTint="@android:color/black"-->
+<!--            android:onClick="loginUser"-->
+<!--            android:visibility="invisible"-->
+<!--            android:text="Resend Verification Email"-->
+<!--            android:transitionName="button_tran">-->
+
+<!--        </Button>-->
     </LinearLayout>
 
 </LinearLayout>

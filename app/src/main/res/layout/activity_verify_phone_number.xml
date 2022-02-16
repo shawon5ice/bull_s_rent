@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/rectangle2"
     android:orientation="vertical"
-    tools:context=".VerifyPhoneNumber">
+    tools:context=".authentication.VerifyPhoneNumber">
 
     <RelativeLayout
         android:layout_width="match_parent"

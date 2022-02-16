@@ -5,21 +5,29 @@
       <map>
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/bottom_sheet_dialog.xml" value="0.25092592592592594" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/button_background.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/item_selector.xml" value="0.2630769230769231" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rectange.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rectangle.xml" value="0.25092592592592594" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rectangle2.xml" value="0.25462962962962965" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/rounded_corner.xml" value="0.2630769230769231" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/drawable/sheet_background.xml" value="0.25092592592592594" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_add_note.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_dash_board.xml" value="0.25" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_home_page.xml" value="0.152" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_verify_email.xml" value="0.2" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.264" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.136" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.144" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/fragment_favorite.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/fragment_home.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/fragment_profile.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/fragment_search.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/layout/note_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/shawon/AndroidStudioProjects/Bullsapp/app/src/main/res/menu/home_page_menu.xml" value="0.25" />
       </map>
     </option>

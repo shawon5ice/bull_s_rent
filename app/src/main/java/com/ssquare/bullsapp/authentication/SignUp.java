@@ -1,4 +1,4 @@
-package com.ssquare.bullsapp;
+package com.ssquare.bullsapp.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,18 +12,21 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.ssquare.bullsapp.models.UserModelClass;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.ssquare.bullsapp.R;
+import com.ssquare.bullsapp.models.UserModel;
 
 public class SignUp extends AppCompatActivity {
 
@@ -31,11 +34,12 @@ public class SignUp extends AppCompatActivity {
     private ImageView image;
     private TextView logo_name,logo_slogan;
     private Button signUpButton,gotoSignInButton;
+    private ProgressBar progressIndicator;
 
     private FirebaseAuth mAuth;
     private boolean regClicked = false;
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    private boolean verified = false;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +57,11 @@ public class SignUp extends AppCompatActivity {
         phoneNo = findViewById(R.id.signUpPhoneNo);
         signUpButton = findViewById(R.id.signUpButton);
         gotoSignInButton = findViewById(R.id.gotoSignInButton);
+        progressIndicator = findViewById(R.id.signUpProgressIndicator);
 
         mAuth = FirebaseAuth.getInstance();
+
+        db = FirebaseFirestore.getInstance();
 
 
 
@@ -264,6 +271,8 @@ public class SignUp extends AppCompatActivity {
         if(!validateName() | !validatePassword() | !validatePhoneNo() | !validateEmail() | !validateUsername()){
             return;
         }
+        progressIndicator.setVisibility(View.VISIBLE);
+
         String name = fullName.getEditText().getText().toString().trim();
         String uName = userName.getEditText().getText().toString().trim();
         String mail = email.getEditText().getText().toString().trim();
@@ -276,30 +285,52 @@ public class SignUp extends AppCompatActivity {
 //        intent.putExtra("phoneNo",phone);
 //        startActivity(intent);
 
-        System.out.println("Hello From RegUser");
-        mAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    String uid = mAuth.getUid();
-                    UserModelClass userModelClass = new UserModelClass(uid,name,uName,mail,phone,pass);
-                    rootNode = FirebaseDatabase.getInstance("https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app/");
-                    reference = rootNode.getReference("users");
-                    reference.child(uid).setValue(userModelClass);
-                    Intent intent = new Intent(getApplicationContext(),Login.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Authentication failed",Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        });
+        try {
+            signUpButton.setEnabled(false);
+            gotoSignInButton.setEnabled(false);
+            mAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        String uid = mAuth.getCurrentUser().getUid();
+                        UserModel user = new UserModel(uid,name,uName,mail,phone,verified);
 
+                        //FireStoreDb data sending
+                        db.collection("users").document(uid).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Intent intent = new Intent(getApplicationContext(),Login.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Snackbar.make(view,e.getMessage(),Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                    }else{
+                        Snackbar.make(view,"Authentication Failed",Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    email.setError(e.getMessage());
+                }
+            });
+        }finally {
+            progressIndicator.setVisibility(View.GONE);
+            signUpButton.setEnabled(true);
+            gotoSignInButton.setEnabled(true);
+        }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        progressIndicator.setVisibility(View.GONE);
+        signUpButton.setEnabled(true);
+        gotoSignInButton.setEnabled(true);
+    }
 }
