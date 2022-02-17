@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "242897736920",
+    "firebase_url": "https://bull-s-rent-625fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bull-s-rent-625fb",
+    "storage_bucket": "bull-s-rent-625fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242897736920:android:91f0e22a289903cc9c33ad",
+        "android_client_info": {
+          "package_name": "com.ssquare.bullsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242897736920-36o7m541bddok1uii2k2de9n1709ucq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABymDeh2lE2PWVXoOxHnMdnX-_Jorns5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242897736920-36o7m541bddok1uii2k2de9n1709ucq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
