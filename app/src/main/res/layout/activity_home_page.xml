@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,20 +12,25 @@
     <FrameLayout
         android:id="@+id/dash_board_frame"
         android:layout_width="match_parent"
-        android:layout_height="659dp"
-        android:layout_alignParentTop="true">
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     </FrameLayout>
 
     <me.ibrahimsn.lib.SmoothBottomBar
-        android:layout_below="@id/dash_board_frame"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:backgroundColor="@color/purple_200"
+        android:layout_height="70dp"
+        android:layout_below="@id/dash_board_frame"
         android:layout_alignParentBottom="true"
+        app:backgroundColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu"
-        tools:ignore="SpeakableTextPresentCheck">
-    </me.ibrahimsn.lib.SmoothBottomBar>
+        tools:ignore="SpeakableTextPresentCheck"></me.ibrahimsn.lib.SmoothBottomBar>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

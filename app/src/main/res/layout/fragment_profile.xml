@@ -37,7 +37,6 @@
                     android:layout_toRightOf="@+id/fragment_profile_image"
                     android:fontFamily="@font/bungee"
                     android:includeFontPadding="false"
-                    android:text="Name"
                     android:textColor="#000"
                     android:textSize="20sp" />
                 <TextView
@@ -45,7 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:text="Hi"
                     android:includeFontPadding="false"
                     android:textSize="14sp"
                     android:layout_toRightOf="@+id/fragment_profile_image"
@@ -171,8 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/user"
-                        android:drawablePadding="10dp"
-                        android:text="Arman ahmed shawon" />
+                        android:drawablePadding="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -186,8 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/paper_plane"
-                        android:drawablePadding="10dp"
-                        android:text="shawon5ice@gmail.com" />
+                        android:drawablePadding="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -201,8 +197,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/phone"
-                        android:drawablePadding="10dp"
-                        android:text="01734094865" />
+                        android:drawablePadding="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -217,8 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/padlock"
-                        android:drawablePadding="10dp"
-                        android:text="arman" />
+                        android:drawablePadding="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

@@ -57,7 +57,6 @@ public class Login extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(Login.this, android.R.color.darker_gray));
 
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
 
         callSignUp_btn = findViewById(R.id.gotoSinUpButton);
         login_btn = findViewById(R.id.login_btn);

@@ -14,4 +14,17 @@
     <color name="colorPrimaryDark">#004948</color>
     <color name="colorAccent">#000</color>
 
+    <color name="navy_blue">#182053</color>
+    <color name="dark_blue">#3a4bcb</color>
+
+    <color name="off_white">#eaeced</color>
+    <color name="light_gray">#a5b2c5</color>
+    <color name="dark_gray">#5b5f65</color>
+    <color name="gray_blue">#6e889f</color>
+    <color name="pure_black">#232828</color>
+
+    <color name="blue_500">#92b8f3</color>
+    <color name="blue_700">#5e9ffd</color>
+    <color name="blue_900">#5570a2</color>
+
 </resources>

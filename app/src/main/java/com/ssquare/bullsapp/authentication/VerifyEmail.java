@@ -36,7 +36,6 @@ public class VerifyEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_email);
-        getSupportActionBar().hide();
 
         progressTV = findViewById(R.id.waitTimerTV);
         progressIndicator = findViewById(R.id.verificationProgressBar);

@@ -45,7 +45,6 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
-        getSupportActionBar().hide();
 
         image = findViewById(R.id.signUpLogoImage);
         logo_name = findViewById(R.id.signup_logo_name);

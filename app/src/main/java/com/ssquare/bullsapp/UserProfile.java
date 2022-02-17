@@ -31,9 +31,6 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("");
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.teal_200)));
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 

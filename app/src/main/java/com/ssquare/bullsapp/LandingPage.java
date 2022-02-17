@@ -29,15 +29,14 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("Bull's Rent");
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.teal_200)));
+//        getSupportActionBar().setElevation(0);
+//        getSupportActionBar().setTitle("Bull's Rent");
+//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.teal_200)));
         mAuth = FirebaseAuth.getInstance();
 
         bottomBar = findViewById(R.id.bottomNavigation);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.dash_board_frame, new HomeFragment()).commit();
-
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             Fragment fragment = null;
             @Override
@@ -60,28 +59,6 @@ public class LandingPage extends AppCompatActivity {
                 return true;
             }
         });
-//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                Fragment fragment = null;
-//                switch (item.getItemId()){
-//                    case R.id.home_nav:
-//                        fragment = new HomeFragment();
-//                        break;
-//                    case  R.id.fav_nav:
-//                        fragment = new FavoriteFragment();
-//                        break;
-//                    case R.id.search_nav:
-//                        fragment = new SearchFragment();
-//                        break;
-//                    case R.id.profile_nav:
-//                        fragment = new ProfileFragment();
-//                        break;
-//                }
-//                getSupportFragmentManager().beginTransaction().replace(R.id.main_container,fragment).commit();
-//                return true;
-//            }
-//        });
 
 
     }

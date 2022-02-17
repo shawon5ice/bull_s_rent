@@ -32,43 +32,12 @@ import com.ssquare.bullsapp.authentication.Login;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
 
-    String userID;
-    DocumentReference documentReference;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public ProfileFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     private TextInputLayout userName,name,phoneNo,password,email;
@@ -76,16 +45,6 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     private ProgressBar progressBar;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,28 +60,10 @@ public class ProfileFragment extends Fragment {
         name_TV = view.findViewById(R.id.fragment_full_name_TV);
         userName_TV = view.findViewById(R.id.fragment_user_name_TV);
 
-        //mAuth = FirebaseAuth.getInstance();
-        //db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        documentReference = FirebaseFirestore.getInstance().collection("users").document(userID);
-
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-
-                name_TV.setText(value.getString("name"));
-                userName_TV.setText(value.getString("userName"));
-                String n = value.getString("name");
-                Log.i("DB",n);
-
-            }
-        });
-
-
-
-
-      /*  db.collection("users")
+        db.collection("users")
                 .document(mAuth.getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -153,8 +94,8 @@ public class ProfileFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(), "Failed to get data", Toast.LENGTH_SHORT).show();
                     }
-                });*/
+                });
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 }
