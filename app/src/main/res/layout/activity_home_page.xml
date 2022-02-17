@@ -20,8 +20,8 @@
         android:layout_below="@id/dash_board_frame"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:backgroundColor="@color/colorPrimaryDark"
+        android:layout_height="50dp"
+        app:backgroundColor="@color/purple_200"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu"
         tools:ignore="SpeakableTextPresentCheck">

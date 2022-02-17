@@ -22,7 +22,7 @@
                 android:paddingHorizontal="20dp"
                 >
                 <ImageView
-                    android:id="@+id/profile_image"
+                    android:id="@+id/fragment_profile_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/bull_rent"
@@ -30,26 +30,26 @@
                     />
 
                 <TextView
-                    android:id="@+id/full_name_TV"
+                    android:id="@+id/fragment_full_name_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/profile_image"
+                    android:layout_toRightOf="@+id/fragment_profile_image"
                     android:fontFamily="@font/bungee"
                     android:includeFontPadding="false"
                     android:text="Name"
                     android:textColor="#000"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/user_name_TV"
+                    android:id="@+id/fragment_user_name_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:text="Hi"
                     android:includeFontPadding="false"
                     android:textSize="14sp"
-                    android:layout_toRightOf="@+id/profile_image"
-                    android:layout_below="@+id/full_name_TV"
+                    android:layout_toRightOf="@+id/fragment_profile_image"
+                    android:layout_below="@+id/fragment_full_name_TV"
                     android:layout_centerVertical="true"
                     />
 
@@ -73,13 +73,13 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/balance_image"
+                            android:id="@+id/fragment_balance_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/ic_baseline_account_balance_wallet_24" />
                         <TextView
-                            android:id="@+id/balance_label"
+                            android:id="@+id/fragment_balance_label"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,8 +92,8 @@
                             >
                         </TextView>
                         <TextView
-                            android:id="@+id/balance_tag"
-                            android:layout_below="@+id/balance_label"
+                            android:id="@+id/fragment_balance_tag"
+                            android:layout_below="@+id/fragment_balance_label"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -120,13 +120,13 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/booking_image"
+                            android:id="@+id/fragment_booking_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/ic_baseline_book_24" />
                         <TextView
-                            android:id="@+id/booking_label"
+                            android:id="@+id/fragment_booking_label"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -139,8 +139,8 @@
                             >
                         </TextView>
                         <TextView
-                            android:id="@+id/booking_tag"
-                            android:layout_below="@+id/booking_label"
+                            android:id="@+id/fragment_booking_tag"
+                            android:layout_below="@+id/fragment_booking_label"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/profile_name_ET"
+                    android:id="@+id/fragment_profile_name_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -176,7 +176,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/profile_email_ET"
+                    android:id="@+id/fragment_profile_email_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -191,7 +191,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/profile_phoneNo_ET"
+                    android:id="@+id/fragment_profile_phoneNo_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -206,7 +206,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/profile_password_ET"
+                    android:id="@+id/fragment_profile_password_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
